@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package rover;
+
+service rover {
+    rpc GetMap(FileName) returns(Map){}
+    
+    rpc GetStreamCommands(Api) returns(stream Commands){}
+
+    rpc GetMine(Mine_Number) returns (Mine){}
+
+    rpc ListCommands(CommandSuccess) returns (Success){}
+
+    rpc SharePin(Index) returns (Pin){}
+}
+
+message FileName{
+    string mapID = 1;
+}
+
+message Map{
+    string map_display = 1 [deprecated = true];
+    repeated string map_display_array = 2;
+    int32 rows = 3;
+    int32 columns = 4;
+}
+
+message Api{
+    string api_name = 1;
+}
+
+message Commands{
+    string commands_display = 1;
+}
+
+message Mine_Number{
+    string mine_number = 1 [deprecated = true];
+    int32 mine_index = 2;
+}
+
+message Mine{
+    string mine_serial = 1;
+}
+
+message Success{
+    string success_rate = 1;
+}
+
+message Index{
+    string index_number = 1;
+}
+
+message Pin{
+    string pin_number = 1;
+}
+
+message CommandSuccess{
+    string success = 1;
+}
