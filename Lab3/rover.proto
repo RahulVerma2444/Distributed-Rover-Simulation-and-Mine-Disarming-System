@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package rover;
+
+service rover {
+    rpc GetMap(FileName) returns(Map){}
+    
+    rpc GetStreamCommands(Api) returns(stream Commands){}
+
+    rpc GetMine(Mine_Number) returns (Mine){}
+
+    rpc Defused(Pin) returns (confirm){}
+}
+
+message Pin {
+    string pin_number = 1;
+}
+
+message confirm {
+    string confirm = 1;
+}
+
+message FileName{
+    string mapID = 1;
+}
+
+message Map{
+    repeated string map_display_array = 1;
+    int32 rows = 2;
+    int32 columns = 3;
+}
+
+message Api{
+    string api_name = 1;
+}
+
+message Commands{
+    string commands_display = 1;
+}
+
+message Mine_Number{
+    int32 mine_index = 1;
+}
+
+message Mine{
+    string mine_serial = 1;
+}
